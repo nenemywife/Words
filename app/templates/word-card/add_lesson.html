@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block title %}Add Lesson{% endblock %}
+
+{% block aLeft %}
+{% if isLogin == True %}
+<a class="nav-link" href="/dashboard">Profile</a>
+{% else %}
+<a class="nav-link" href="/login">Login</a>
+{% endif %}
+{% endblock %}
+
+{% block main %}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1>Add Lesson</h1>
+            <hr>
+            <form action="/word-card/add-lesson" method="POST">
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">Lesson Title</span>
+                    <input type="text" class="form-control" placeholder="Title" aria-label="Title"
+                        aria-describedby="basic-addon1" name="title">
+                </div>
+                {% if error == "Empty" %}
+                <div class="alert alert-danger d-flex align-items-center" role="alert">
+                    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+                    <div>
+                      Lesson Title Can't Be Empty!
+                    </div>
+                </div>
+                {% elif error == "Exist" %}
+                <div class="alert alert-danger d-flex align-items-center" role="alert">
+                    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+                    <div>
+                      Lesson Title is Already Exist!
+                    </div>
+                </div>
+                {% endif %}
+
+                <div class="input-group">
+                    <span class="input-group-text">Description</span>
+                    <textarea class="form-control" aria-label="With textarea" name="describe"></textarea>
+                </div>
+                <button class="btn btn-info" type="submit" style="margin-top: 10px;">Add</button>
+            </form>
+            <hr>
+            <a href="/word-card" class="btn btn-outline-secondary">Back</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

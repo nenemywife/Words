@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block aLeft %}
+    {% if isLogin == True %}
+    <a class="nav-link" href="/dashboard">Profile</a>
+    {% else %}
+    <a class="nav-link" href="/login">Login</a>
+    {% endif %}
+{% endblock %}
+
+{% block main %}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1>Home</h1>
+            <hr>
+            <div class="card" style="margin-bottom: 15px;">
+                <div class="card-header" style="background-color: #b3dfff;">
+                  Introduction
+                </div>
+                <div class="card-body">
+                    <h4 class="card-title">What is "Words"?</h4>
+                    <p class="card-text">This is a website for learning English words.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" style="background-color: #ffc8b3;">
+                  Way
+                </div>
+                <div class="card-body">
+                    <h4 class="card-title">How to Use?</h4>
+                    <p class="card-text">
+                        <a href="/login">Login</a> to use all the function. If you don't have an account, please go <a href="/sign-up">Sign Up</a>.
+                        <br>After login, click the word "Word Card" on top or click the <a href="/word-card">link</a>.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>404</title>
+</head>
+<style>
+    body {
+        background-color: #015e80;
+        color: #fff;
+        text-align: center;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
+
+    h1 {
+        font-size: 20vw;
+        margin-bottom: 0;
+        animation-name: moves;
+        animation-duration: 5s;
+        animation-iteration-count: 1;
+    }
+
+    .dot {
+        border-radius: 50%;
+        background-color: #fff;
+        width: 1vw;
+        height: 1vw;
+        position: fixed;
+        animation-name: shine;
+        animation-duration: 5s;
+        animation-iteration-count: infinite;
+    }
+
+    .btn {
+        position: relative;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 10%;
+        border-color: #fff;
+        border-width: 2px;
+        border-style: solid;
+        color: #fff;
+        padding: 10px;
+        text-decoration: none;
+        font-size: larger;
+    }
+
+    .btn:hover {
+        background-color: #fff;
+        color: #015e80;
+    }
+
+    @keyframes shine {
+        0% {
+            opacity: 0;
+        }
+
+        50% {
+            opacity: 1;
+        }
+
+        100% {
+            opacity: 0;
+        }
+    }
+
+    @keyframes moves {
+        0% {
+            font-size: 20vw;
+        }
+
+        50% {
+            font-size: 22vw;
+        }
+
+        100% {
+            font-size: 20vw;
+        }
+    }
+</style>
+
+<body>
+    <h1>404</h1>
+    <div class="text">
+        <div id="dots">
+        </div>
+        <div class="link">
+            <a href="/" class="btn">Home</a>
+        </div>
+
+
+</body>
+<script src="https://code.jquery.com/jquery-3.7.1.slim.min.js"
+    integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
+<script>
+    $(document).ready(function () {
+        var dotObj = document.getElementById("dots");
+
+        function freshDot() {
+            this.obj = document.createElement("div");
+            this.obj.classList.add("dot");
+            this.obj.style.top = (window.innerHeight * Math.random()) + 'px';
+            this.obj.style.left = (window.innerWidth * Math.random()) + 'px';
+            this.size = Math.floor(5 * Math.random()) + 7;
+            this.obj.style.height = this.size + 'px';
+            this.obj.style.width = this.size + 'px';
+
+            dotObj.appendChild(this.obj);
+        }
+
+        function removeDot() {
+            dotObj.removeChild(dotObj.firstChild);
+        }
+
+        var dot = [];
+        var time = Math.random() * 350
+        function newDot() {
+            dot.push(new freshDot());
+            setTimeout(removeDot, time + 5000);
+        }
+
+        setInterval(newDot, time);
+    });
+</script>
+
+</html>

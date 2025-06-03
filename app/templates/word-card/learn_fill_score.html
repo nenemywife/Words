@@ -1,0 +1,46 @@
+{% extends 'base.html' %} {% block title %}Fill{% endblock %} {% block aLeft %}
+{% if isLogin == True %}
+<a class="nav-link" href="/dashboard">Profile</a>
+{% else %}
+<a class="nav-link" href="/login">Login</a>
+{% endif %} {% endblock %} {% block main %}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1>Score of Lesson {{title}}</h1>
+            <p>Accurate: {{acc}}%</p>
+            <hr />
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">The Correct Word</th>
+                        <th scope="col">What You Spell</th>
+                        <th scope="col">Correct</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% set ind = namespace(total=0) %}
+                    {% for s in dic %}
+                    <tr>
+                        <th scope="row">{{ind.total+1}}</th>
+                        <td>{{words[ind.total].word}}</td>
+                        <td>{{s}}</td>
+                        <td>
+                            {% if dic[s] == True %}
+                            <p style="color: rgb(0, 133, 89);">V</p>
+                            {% else %}
+                            <p style="color: brown;">X</p>
+                            {% endif %}
+                        </td>
+                        {% set ind.total = ind.total + 1 %}
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <hr />
+            <a href="/word-card/{{title}}/learn" class="btn btn-outline-secondary">Finish</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

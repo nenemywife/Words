@@ -1,0 +1,55 @@
+.container{
+    margin-top: 20px;
+}
+
+body{
+    background-color: white;
+    font-family: 'Segoe UI', monospace, Geneva, Verdana, sans-serif;
+}
+
+.navbar-brand{
+    font-family: 'Rampart One';
+}
+
+.flip-card{
+    background-color: transparent;
+    width: 300px;
+    height: 300px;
+    perspective: 1000px;
+}
+
+.inner-card{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+.flip-card:hover .inner-card {
+  transform: rotateY(180deg);
+}
+
+.front-card, .back-card {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.back-card {
+    text-align: center;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    transform: rotateY(180deg);
+}
+
+.front-card{
+    text-align: center;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}

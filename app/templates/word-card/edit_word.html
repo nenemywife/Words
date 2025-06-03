@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% block title %}Add Word{% endblock %}
+
+{% block aLeft %}
+{% if isLogin == True %}
+<a class="nav-link" href="/dashboard">Profile</a>
+{% else %}
+<a class="nav-link" href="/login">Login</a>
+{% endif %}
+{% endblock %}
+
+{% block main %}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1>Edit {{words.word}}</h1>
+            <hr>
+            <form action="/word-card/{{title}}/edit/{{words.id}}/edit" method="POST">
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">Word</span>
+                    <input type="text" class="form-control" aria-label="Username"
+                        aria-describedby="basic-addon1" name="word" value="{{words.word}}">
+                </div>
+                {% if error == "Empty" %}
+                <div class="alert alert-danger d-flex align-items-center" role="alert">
+                    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+                    <div>
+                      Word Can't Be Empty!
+                    </div>
+                </div>
+                {% endif %}
+                
+                <div class="mb-3">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="n." id="flexCheckDefault" name="choose_typ">
+                        <label class="form-check-label" for="flexCheckDefault">
+                          n.
+                        </label>
+                      </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="v." id="flexCheckChecked" name="choose_typ">
+                        <label class="form-check-label" for="flexCheckChecked">
+                          v.
+                        </label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="adj." id="flexCheckChecked" name="choose_typ">
+                        <label class="form-check-label" for="flexCheckChecked">
+                          adj.
+                        </label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="adv." id="flexCheckChecked" name="choose_typ">
+                        <label class="form-check-label" for="flexCheckChecked">
+                          adv.
+                        </label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="prep." id="flexCheckChecked" name="choose_typ">
+                        <label class="form-check-label" for="flexCheckChecked">
+                          prep.
+                        </label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="conj." id="flexCheckChecked" name="choose_typ">
+                        <label class="form-check-label" for="flexCheckChecked">
+                          conj.
+                        </label>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <span class="input-group-text">Definition</span>
+                    <textarea class="form-control" aria-label="With textarea" name="def">{{words.definition}}</textarea>
+                </div>
+                <button class="btn btn-success" type="submit" style="margin-top: 15px;">Edit</button>
+            </form>
+            <hr>
+            <a href="/word-card/{{title}}/edit" class="btn btn-outline-warning">Back</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

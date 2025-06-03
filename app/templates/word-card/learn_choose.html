@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}Add Lesson{% endblock %}
+
+{% block aLeft %}
+{% if isLogin == True %}
+<a class="nav-link" href="/dashboard">Profile</a>
+{% else %}
+<a class="nav-link" href="/login">Login</a>
+{% endif %}
+{% endblock %}
+
+{% block main %}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1>Learn {{title}}</h1>
+            <hr>
+            <form action="/word-card/{{title}}/learn" method="POST">
+                <button class="btn btn-info" type="submit" name="learn_submit" value="card">Word Card</button>
+                <br>
+                <button class="btn btn-warning" type="submit" name="learn_submit" value="fill" style="margin-top: 10px;">Fill Blank</button>
+            </form>
+            <hr>
+            <a href="/word-card" class="btn btn-outline-secondary">Back</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
